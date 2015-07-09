@@ -21,7 +21,7 @@ class Context extends CI_Controller {
 	    $this->load->view('templates/footer', $data);        
 	}
 	public function detail($id){
-		$data['title']="競賽資料-亞洲大學 資訊工程學系 程式設計競賽平台";
+		
 
 		$query = $this->db->query("select * from itsa_exam where itsa_id=".$this->db->escape($id)."");
 		$data['exam_detail']=$query->result_array();
@@ -53,7 +53,19 @@ class Context extends CI_Controller {
 			}
 			$data['teacher']=$teacher_array;
 			//print_r($teacher_array);
-			
+			$detail_header="";
+			switch($data['exam_detail'][0]['itsa_type']){
+				case 1:
+					$detail_header="第 ".$data['exam_detail'][0]['itsa_th']." 次競賽";
+				break;
+				case 2:
+					$detail_header=date("Y",strtotime($data['exam_detail'][0]['itsa_date']))." 年 ".date("m",strtotime($data['exam_detail'][0]['itsa_date']))." 月競賽";
+				break;
+				case 3:
+					$detail_header=$data['exam_detail'][0]['itsa_date']." CPE";
+				break;
+			}
+			$data['title']=$detail_header." 競賽資料-亞洲大學 資訊工程學系 程式設計競賽平台";
 			$this->load->view('templates/header', $data);
 		    $this->load->view('pages/detail', $data);
 		    $this->load->view('templates/footer', $data); 

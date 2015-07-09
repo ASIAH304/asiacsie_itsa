@@ -5,6 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 print_r($exam_count);
 echo "</pre>";*/
 ?>
+<!--<div class="ui active dimmer">
+	<div class="ui indeterminate text loader large">系統維護中</div>
+</div>-->
 
 	
 <table class="ui celled striped table large">

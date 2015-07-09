@@ -10,6 +10,13 @@
 	<script src="<?php echo base_url();?>js/semantic.min.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url();?>css/style.css" />
 	<link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>favicon.png"/>
+
+	<meta name="thumbnail" content="<?php echo base_url();?>logo.png" />
+
+	<meta name="og:title" content="<?php echo $title ?>" />
+	<meta name="og:type" content="website" />
+	<meta name="og:image" content="<?php echo base_url();?>logo.png" />
+	<meta property="og:description" content="<?php echo $title ?>"/>
 </head>
 <body>
 <h1><i class="code icon green"></i> 亞洲大學 資訊工程學系 程式設計競賽平台</h1>
@@ -22,5 +29,6 @@
 	<a class="item" href="#">線上練習 <div class="floating ui red label">DEV</div></a>
 	<div class="right menu">
 		<a class="item" href="<?php echo base_url();?>admin">管理</a>
+		
 	</div>
 </div>

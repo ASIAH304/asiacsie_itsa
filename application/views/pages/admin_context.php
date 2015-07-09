@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<a href="<?php echo base_url();?>index.php/admin/context/new" class="ui basic button blue"><i class="add circle icon"></i> 新增競賽資訊</a>
+<a href="<?php echo base_url();?>admin/context/new" class="ui basic button blue"><i class="add circle icon"></i> 新增競賽資訊</a>
 <table class="ui celled striped table">
 	<thead>
 		<tr>

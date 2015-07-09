@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<button href="#" class="ui basic button blue"><i class="add user icon"></i> 新增學生</button>
+
 <table class="ui celled table">
 	<thead>
 		<tr>

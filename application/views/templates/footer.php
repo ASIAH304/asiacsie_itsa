@@ -9,7 +9,7 @@
         <i class="html5 icon orange"></i>
         <i class="css3 icon blue"></i>
     </div>
-    所有資料皆來自比賽官方網站資料，所有資料會於比賽後三天後更新<br>
+    所有資料皆來自比賽官方網站資料<br>
     Develop by Jingxun Lai. 程式設計競賽平台 Version 1.0
 </footer>
 <!-- Piwik -->
