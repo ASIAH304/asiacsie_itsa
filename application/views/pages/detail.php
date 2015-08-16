@@ -3,23 +3,23 @@ $detail_header="";
 $context_site="";
 $context_info="";
 $context_type="";
-switch($exam_detail[0]['itsa_type']){
+switch($exam_detail->itsa_type){
 	case 1:
 		$context_site="https://sites.google.com/site/itsancku/";
 		$context_info="https://sites.google.com/site/itsancku/home";
-		$detail_header="第 ".$exam_detail[0]['itsa_th']." 次競賽";
+		$detail_header="第 ".$exam_detail->itsa_th." 次競賽";
 		$context_type='<div class="ui teal button">ITSA 線上程式設計競賽</div>';
 	break;
 	case 2:
 		$context_site="https://sites.google.com/site/itsancku/";
 		$context_info="https://sites.google.com/site/itsancku/home";
-		$detail_header=date("Y",strtotime($exam_detail[0]['itsa_date']))." 年 ".date("m",strtotime($exam_detail[0]['itsa_date']))." 月競賽";
+		$detail_header=date("Y年m月競賽",strtotime($exam_detail->itsa_date));
 		$context_type='<div class="ui orange button">PTC 線上程式設計競賽</div>';
 	break;
 	case 3:
 		$context_site="https://cpe.cse.nsysu.edu.tw/";
 		$context_info="https://cpe.cse.nsysu.edu.tw/newest.php";
-		$detail_header=$exam_detail[0]['itsa_date']." CPE";
+		$detail_header=$exam_detail->itsa_date." CPE";
 		$context_type='<div class="ui red button">大學程式能力檢定(CPE)</div>';
 	break;
 	default:
@@ -35,7 +35,7 @@ switch($exam_detail[0]['itsa_type']){
 	<?php echo $context_type?>
 	<a href="<?php echo $context_site;?>" class="ui blue button" target="_blank"><i class="fa fa-bookmark"></i> 競賽網站</a>
 	<a href="<?php echo $context_info;?>" class="ui green button" target="_blank"><i class="fa fa-exclamation-circle"></i> 競賽資訊</a>
-	<?php if($exam_detail[0]['itsa_type']==3){?>
+	<?php if($exam_detail->itsa_type==3){?>
 	<table class="ui celled table"><!--<table class="mtable level">-->
 		<thead>
 			<tr>
@@ -82,17 +82,17 @@ switch($exam_detail[0]['itsa_type']){
 <div class="ui top inverted attached segment center aligned">
 	<h3>本次競賽資訊</h3>
 </div>
-<?php //print_r($team_bestsolved)?>
+
 <div class="ui inverted segment attached">
-<?php if(strtotime($exam_detail[0]['itsa_date'])>0 ){?>
-<div class="ui statistics five column grid tiny">
+<?php if(strtotime($exam_detail->itsa_date)>0 ){?>
+<div class="ui statistics seven column grid tiny">
 	<div class="column">
 	<div class="ui inverted statistic">
 		<div class="label">
-			<i class="fa fa-calendar"></i> 日期
+			<i class="fa fa-calendar"></i> 競賽日期
 		</div>
-		<div class="value">
-			<?php echo $exam_detail[0]['itsa_date'];?>
+		<div class="value" style="font-size: 30px">
+			<?php echo $exam_detail->itsa_date;?>
 		</div>
 	</div>
 	</div>
@@ -101,41 +101,76 @@ switch($exam_detail[0]['itsa_type']){
 		<div class="label">
 			<i class="fa fa-building-o"></i> 地點
 		</div>
-		<div class="value">
-			<?php echo $exam_detail[0]['itsa_place'];?>
+		<div class="value" style="font-size: 36px">
+			<?php echo $exam_detail->itsa_place;?>
 		</div>
 	</div>
 	</div>
 	<div class="column">
 	<div class="ui inverted blue statistic">
-		<div class="label">
-			<i class="fa fa-users"></i> 參賽隊數
+		<div class="value" style="font-size: 36px">
+			<i class="fa fa-users icon"></i> <?php echo count($itsa_team)?>
 		</div>
-		<div class="value">
-			<?php echo count($itsa_team)?>
+		<div class="label">
+			參賽隊數 
 		</div>
 	</div>
 	</div>
 	<div class="column">
-	<div class="ui inverted green statistic">
-		<div class="label">
-			<i class="fa fa-star"></i> 平均解題數
+	<div class="ui inverted red statistic">
+		<div class="value" style="font-size: 36px">
+			<i class="fa fa-thumbs-up"></i> <?php echo $best_team?>
 		</div>
-		<div class="value">
-			<?php if(count($team_solved)==1){echo round($team_solved[0]->team_avg,1);}else{echo "?";}?> / <?php echo $exam_detail[0]['exam_num']?>
+		<div class="label">
+			<?php if($exam_detail->itsa_type==3){?>進階級<?php }else{?>榮獲績優團隊<?php }?>
+		</div>
+	</div>
+	</div>
+	<div class="column">
+	<div class="ui inverted teal statistic">
+		<div class="value" style="font-size: 36px">
+			<i class="fa fa-user-secret"></i> <?php echo $exam_detail->team_num;?>
+		</div>
+		<div class="label">
+			總參賽隊(人)數 
+		</div>
+	</div>
+	</div>
+	
+	<div class="column">
+	<div class="ui inverted green statistic">
+		<div class="value" style="font-size: 36px">
+			<i class="fa fa-star"></i> <?php if(count($team_solved)==1){echo round($team_solved->team_avg,1);}else{echo "?";}?> / <?php echo $exam_detail->exam_num?>
+		</div>
+		<div class="label">
+			平均解題數
 		</div>
 	</div>
 	</div>
 	<div class="column">
 	<div class="ui inverted yellow statistic">
+		<div class="value" style="font-size: 36px">
+			<i class="fa fa-thumbs-o-up"></i> 
+			<?php 
+				if(empty($team_bestsolved->bestsolved)){
+					echo "0";
+				}else{
+					if($team_bestsolved->bestsolved>=0){
+						echo $team_bestsolved->bestsolved;
+					}else{
+						echo "?";
+					}
+				}
+			?>
+			/
+			<?php echo $exam_detail->exam_num?>
+		</div>
 		<div class="label">
-			<i class="fa fa-thumbs-o-up"></i> 最佳解題數
-		</div>
-		<div class="value">
-			<?php if($team_bestsolved>=0){ echo $team_bestsolved[0]->bestsolved;}else{echo "?";}?> / <?php echo $exam_detail[0]['exam_num']?>
+			最佳解題數
 		</div>
 	</div>
 	</div>
+	
 </div>
 <?php }else{?>
 <div class="ui bottom attached message">
@@ -149,7 +184,7 @@ switch($exam_detail[0]['itsa_type']){
 	<h3>參賽人員</h3>
 </div>
 <div class="ui segment attached blue">
-<?php switch($exam_detail[0]['itsa_type']){
+<?php switch($exam_detail->itsa_type){
 	case 3:?>
 	<table class="ui celled table">
 		<thead>
@@ -197,7 +232,7 @@ switch($exam_detail[0]['itsa_type']){
 	</table>
 	<?php break;
 	default:?>
-	<table class="ui celled table">
+	<table class="ui celled table sortable">
 		<thead>
 			<tr>
 				<th>排名</th>
@@ -209,7 +244,7 @@ switch($exam_detail[0]['itsa_type']){
 				<th>備註</th>
 			</tr>
 		</thead>
-		<tbody>
+		<?php if(count($itsa_team)>0){?>
 		<?php foreach ($itsa_team as $key => $v) {?>
 			<tr>
 				<td><?php echo $v['team_rank']?></td>
@@ -228,8 +263,11 @@ switch($exam_detail[0]['itsa_type']){
 				</td>
 			</tr>
 		<?php }?>
-
+		<?php }else{?>
+			<tr class="center aligned">
+				<td>競賽資料統整中</td>
+			</tr>
+		<?php }?>
 	</table>
 	<?php }?>
 </div>
-<?php //print_r($exam_detail);?>

@@ -21,19 +21,23 @@ class Context extends CI_Controller {
 	    $this->load->view('templates/footer', $data);        
 	}
 	public function detail($id){
-		
 
 		$query = $this->db->query("select * from itsa_exam where itsa_id=".$this->db->escape($id)."");
-		$data['exam_detail']=$query->result_array();
+		$data['exam_detail']=$query->row();
 		if(count($data['exam_detail'])==1){
-			$query = $this->db->query("select * from itsa_team where team_examid=".$this->db->escape($id)." order by team_rank asc");
+			$query = $this->db->query("select * from itsa_team where team_examid=".$this->db->escape($id)." order by team_solved desc,team_rank asc");
 			$data['itsa_team']=$query->result_array();
 
+			$this->db->from("itsa_team");
+			$this->db->where("team_examid",$id);
+			$this->db->where("team_solved >",2);
+			$data['best_team']=$this->db->count_all_results();
+				
 			$query = $this->db->query("select avg(team_solved) as team_avg from itsa_team where team_examid=".$this->db->escape($id)."");
-			$data['team_solved']=$query->result();
+			$data['team_solved']=$query->row();
 
 			$query = $this->db->query("select max(team_solved) as bestsolved from itsa_team where team_examid=".$this->db->escape($id)."");
-			$data['team_bestsolved']=$query->result();
+			$data['team_bestsolved']=$query->row();
 
 			//std id to name
 			$query = $this->db->get('itsa_user');
@@ -54,15 +58,15 @@ class Context extends CI_Controller {
 			$data['teacher']=$teacher_array;
 			//print_r($teacher_array);
 			$detail_header="";
-			switch($data['exam_detail'][0]['itsa_type']){
+			switch($data['exam_detail']->itsa_type){
 				case 1:
-					$detail_header="第 ".$data['exam_detail'][0]['itsa_th']." 次競賽";
+					$detail_header="第 ".$data['exam_detail']->itsa_th." 次競賽";
 				break;
 				case 2:
-					$detail_header=date("Y",strtotime($data['exam_detail'][0]['itsa_date']))." 年 ".date("m",strtotime($data['exam_detail'][0]['itsa_date']))." 月競賽";
+					$detail_header=date("Y年m月競賽",strtotime($data['exam_detail']->itsa_date));
 				break;
 				case 3:
-					$detail_header=$data['exam_detail'][0]['itsa_date']." CPE";
+					$detail_header=$data['exam_detail']->itsa_th." CPE";
 				break;
 			}
 			$data['title']=$detail_header." 競賽資料-亞洲大學 資訊工程學系 程式設計競賽平台";

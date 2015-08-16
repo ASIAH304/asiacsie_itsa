@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title><?php echo $title ?></title>
 	<link rel="stylesheet" href="<?php echo base_url();?>css/semantic.min.css" />
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="<?php echo base_url();?>js/semantic.min.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url();?>css/style.css" />

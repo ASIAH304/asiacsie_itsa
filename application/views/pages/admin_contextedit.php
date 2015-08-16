@@ -24,7 +24,7 @@ if(!empty(validation_errors())){
 			</select>
 		</div>
 	</div>
-	<div class="three fields">
+	<div class="four fields">
 		<div class="field">
 			<label>比賽日期</label>
 			<input type="date" name="itsa_date" value="<?php echo $exam_detail['itsa_date'];?>">
@@ -36,6 +36,10 @@ if(!empty(validation_errors())){
 		</div>
 		<div class="field">
 			<label>比賽題數</label>
+			<input type="text" name="exam_num" value="<?php echo $exam_detail['exam_num'];?>">
+		</div>
+		<div class="field">
+			<label>參賽數</label>
 			<input type="text" name="exam_num" value="<?php echo $exam_detail['exam_num'];?>">
 		</div>
 	</div>

@@ -14,3 +14,6 @@ h1,h2,h3,h4{
 	background-color: #3b83c0;
 	color: white;
 }
+.label{
+	font-family: "微軟正黑體" !important;
+}
