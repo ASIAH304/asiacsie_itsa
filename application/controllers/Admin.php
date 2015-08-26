@@ -56,9 +56,7 @@ class Admin extends CI_Controller {
 						$this->load->view('pages/dashboard', $data);
 						$this->form_validation->set_rules('itsa_th', '比賽屆數', 'required');
 		    			$this->form_validation->set_rules('itsa_type', '比賽類型', 'required');
-		    			if ($this->form_validation->run() === FALSE){
-					        
-					    }else{
+		    			if ($this->form_validation->run()){
 					    	$itsa_th = $this->input->post('itsa_th', TRUE);
 					    	$itsa_type = $this->input->post('itsa_type', TRUE);
 					    	$itsa_date = $this->input->post('itsa_date', TRUE);
@@ -183,52 +181,6 @@ class Admin extends CI_Controller {
 									    		$data['message']['time']=2;
 									    		$this->load->view('templates/message', $data);
 											}
-											/*
-											if($data['exam_detail']['itsa_type']==1 || $data['exam_detail']['itsa_type']==2){
-												if( empty($this->input->post('team_user2')) || $this->input->post('team_user2')==0){
-													$team_user2=NULL;
-												}else{
-													$team_user2=$this->input->post('team_user2');
-												}
-												if( empty($this->input->post('team_user3')) || $this->input->post('team_user3')==0){
-													$team_user3=NULL;
-												}else{
-													$team_user3=$this->input->post('team_user3');
-												}
-												$itsa_team = array(
-													'team_name'=>$this->input->post('team_name'),
-										    		'team_user1'=>$this->input->post('team_user1'),
-										    		'team_user2'=>$team_user2,
-										    		'team_user3'=>$team_user3,
-										    		'team_solved'=>$this->input->post('team_solved'),
-										    		'team_rank'=>$this->input->post('team_rank'),
-										    		'team_time'=>$this->input->post('team_time'),
-										    		'team_teacher'=>$this->input->post('team_teacher'),
-										    		'tean_note'=>$this->input->post('tean_note'),
-										    		'team_examid'=>$data['exam_detail']['itsa_id']
-										    	);
-											}else{
-												$itsa_team = array(
-										    		'team_user1'=>$this->input->post('team_user1'),
-										    		'team_solved'=>$this->input->post('team_solved'),
-										    		'team_rank'=>$this->input->post('team_rank'),
-										    		'team_time'=>$this->input->post('team_time'),
-										    		'tean_note'=>$this->input->post('tean_note'),
-										    		'team_examid'=>$data['exam_detail']['itsa_id']
-										    	);
-											}*/
-											/*if($this->db->update('itsa_team',$itsa_team, array('team_examid' => $id,'team_id'=>$this->input->post('team_id')))){
-									    		$data['message']['class']="green";
-									    		$data['message']['content']="成功更新比賽資訊";
-									    	}else{
-									    		$data['message']['class']="red";
-									    		$data['message']['content']="更新比賽資訊失敗";
-									    	}
-									    	$data['message']['time']=2;
-
-									    	$this->load->view('templates/message', $data);
-											*/
-											
 										break;
 										case "delete":
 											echo "<pre>";

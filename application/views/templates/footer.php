@@ -10,7 +10,7 @@
         <i class="css3 icon blue"></i>
     </div>
     所有資料皆來自比賽官方網站資料<br>
-    Develop by Jingxun Lai. 程式設計競賽平台 Version 1.1.1
+    Develop by Jingxun Lai. 程式設計競賽平台 Version 1.1.5
 </footer>
 <!-- Piwik -->
 <script type="text/javascript">

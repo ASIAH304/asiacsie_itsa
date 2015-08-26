@@ -1,9 +1,18 @@
 <div style="margin: 3em 0;">
 	<h2 class="ui dividing header"><?php echo $user['user_id']?> <?php echo $user['user_name']?> 參賽資訊</h2>
-	<a class="ui primary button" href="#" onclick="alert('別急！！開發ing')">匯出參賽紀錄</a>
-	<a class="ui teal button" href="#" onclick="alert('別急！！開發ing')">列印參賽紀錄</a>
+	<a class="ui primary button disabled" href="#" onclick="alert('別急！！開發ing')">匯出參賽紀錄</a>
+	<a class="ui teal button disabled" href="#" onclick="alert('別急！！開發ing')">列印參賽紀錄</a>
 </div>
-
+<?php if( !is_null($this->input->get('beta', TRUE)) ){?>
+<div class="ui inverted segment">
+	<div class="ui inverted progress success" data-percent="19">
+		<div class="bar" style="transition-duration: 300ms; width: 19%;">
+			<div class="progress">19%</div>
+		</div>
+		<div class="label">Everything worked, your file is all ready.</div>
+	</div>
+</div>
+<?php }?>
 <div class="ui inverted segment attached">
 	<div class="ui statistics six column grid tiny">
 		<div class="column">

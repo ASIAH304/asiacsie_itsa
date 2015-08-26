@@ -1,7 +1,7 @@
 <div style="margin: 3em 0;">
 	<h2 class="ui dividing header"><?php echo $teacher['user_name']?> 老師 帶隊資訊</h2>
-	<a class="ui primary button" href="#" onclick="alert('別急！！開發ing')">匯出帶隊紀錄</a>
-	<a class="ui teal button" href="#" onclick="alert('別急！！開發ing')">列印帶隊紀錄</a>
+	<a class="ui primary button disabled" href="#" onclick="alert('別急！！開發ing')">匯出帶隊紀錄</a>
+	<a class="ui teal button disabled" href="#" onclick="alert('別急！！開發ing')">列印帶隊紀錄</a>
 </div>
 <div class="ui inverted segment attached">
 <div class="ui statistics six column grid tiny">

@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Context extends CI_Controller {
 
 	public function index(){
@@ -15,6 +16,10 @@ class Context extends CI_Controller {
 			$exam_count_array[$v['team_examid']]=$v['count'];
 		}
 		$data['exam_count']=$exam_count_array;
+
+		$data['itsa'] = $this->context->get_list("itsa");
+		$data['ptc'] = $this->context->get_list("ptc");
+		$data['cpe'] = $this->context->get_list("cpe");
 
 		$this->load->view('templates/header', $data);
 	    $this->load->view('pages/index', $data);
