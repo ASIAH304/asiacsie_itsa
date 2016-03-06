@@ -1,0 +1,34 @@
+body,h1,h2,h3,h4,h5,h6{
+	font-family: "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif !important;
+}
+::selection {
+	background-color: #3b83c0;
+	color: white;
+}
+::-moz-selection {
+	background-color: #3b83c0;
+	color: white;
+}
+.table tbody>tr>td{
+	vertical-align: middle;
+}
+.table.text-center td,
+.table.text-center th{
+	text-align: center;
+}
+.text-bold{
+	font-weight: bold;
+}
+.text-red{color:#B03060 !important;}
+.text-orange{color:#FE9A76 !important;}
+.text-yellow{color:#FFD700 !important;}
+.text-olive{color:#32CD32 !important;}
+.text-green{color:#016936 !important;}
+.text-teal{color:#008080 !important;}
+.text-blue{color:#0E6EB8 !important;}
+.text-violet{color:#EE82EE !important;}
+.text-purple{color:#B413EC !important;}
+.text-pink{color:#FF1493 !important;}
+.text-brown{color:#A52A2A !important;}
+.text-grey{color:#A0A0A0 !important;}
+.text-black{color:#000000 !important;}
